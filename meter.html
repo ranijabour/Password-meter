@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Styled Meter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .meter {
+            position: relative;
+            height: 20px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+            background: linear-gradient(to right, #00ff00, #ff0000); /* Gradient background */
+            border: 1px solid #000; /* Border */
+            overflow: hidden; /* Hide overflow for arrow */
+        }
+
+        .meter::after {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+            background-color: #00aaff;
+        }
+
+        .arrow {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 5px 0;
+            border-style: solid;
+            border-color: #00aaff transparent transparent transparent;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="meter">
+            <div class="arrow"></div>
+        </div>
+        <input type="number" id="inputNumber" min="0" max="100" step="1">
+        <button onclick="updateArrowPosition()">Update Arrow Position</button>
+        <script>
+            function updateArrowPosition() {
+                const inputNumber = document.getElementById('inputNumber');
+                const inputPercentage = parseFloat(inputNumber.value);
+                moveArrowByPercentage(inputPercentage);
+            }
+
+            function moveArrowByPercentage(percentage) {
+                const meter = document.querySelector('.meter');
+                const arrow = document.querySelector('.arrow');
+                const arrowPosition = (percentage * meter.clientWidth) / 100; // Convert to pixels
+
+                // Apply CSS transitions with adjusted colors
+                meter.querySelector('.meter::after').style.width = arrowPosition + 'px';
+                arrow.style.left = 'calc(' + (arrowPosition / meter.clientWidth) * 100 + '% - 5px)'; // Adjust arrow position
+            }
+
+            // Initial arrow position
+            moveArrowByPercentage(50); // For example, move arrow to 50% initially
+        </script>
+    </div>
+</body>
+</html>

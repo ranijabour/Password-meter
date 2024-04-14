@@ -1,0 +1,68 @@
+import pandas as pd
+
+
+def print_hi():
+    with open('states.txt', 'r') as file:
+        data_text = file.read()
+    data_lines = data_text.strip().split('\n')
+    data_list = [line.split('\t') for line in data_lines]
+    data_df = pd.DataFrame(data_list, columns=["Country 1", "Country 2", "Index", "Round of ESS used"])
+    # print("------")
+    # print(data_df)
+    return data_df
+
+
+def create_dict_1(group):
+    return dict(zip(group["Country 2"], group["Index"]))
+
+def create_dict_2(group):
+    return dict(zip(group["Country 1"], group["Index"]))
+# Press the green button in the gutter to run the script.
+
+
+def merge_dicts(dicts):
+    merged = {}
+    for d in dicts:
+        merged.update(d)
+    res = sorted(merged.items(), key=lambda x: x[1], reverse=True)
+    return res
+
+
+def sum_val(df):
+    result = {}
+    for row in df.itertuples(index=False):
+        country = row[0]
+        list = row[1]
+        sum = 0
+        for touple in list:
+            sum = float(touple[1]) + sum
+        result[country] = sum
+    return result
+
+
+if __name__ == '__main__':
+
+    data_df = print_hi()
+    grouped_1 = data_df.groupby("Country 1").apply(create_dict_1)
+    grouped_1 = grouped_1.reset_index()
+    grouped_1.columns = ["Country", "Countries Index Dict"]
+    grouped_2 = data_df.groupby("Country 2").apply(create_dict_2)
+    grouped_2 = grouped_2.reset_index()
+    grouped_2.columns = ["Country", "Countries Index Dict"]
+    merged_df = grouped_1.merge(grouped_2, on="Country", how="outer")
+    res = pd.concat(
+        [grouped_1, grouped_2],
+        axis=0,
+        join="outer",
+        ignore_index=False,
+        keys=None,
+        levels=None,
+        names=None,
+        verify_integrity=False,
+        copy=True,
+    )
+    res = res.groupby('Country')['Countries Index Dict'].agg(merge_dicts).reset_index()
+    print (res)
+    dict = sum_val(res)
+    sorted = sorted(dict.items(), key=lambda x: x[1], reverse=True)
+    print(sorted)

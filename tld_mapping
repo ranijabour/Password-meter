@@ -1,0 +1,54 @@
+import os
+
+
+# loops through all data-text-files
+def main():
+    current_directory = os.getcwd()
+    file_list = [filename for filename in os.listdir(current_directory) if
+                 (filename.endswith('.txt') and not(filename.endswith('data.txt')))]
+    for file in file_list:
+        file_to_dict(file)
+
+
+# for each file, maps the data to countries data based on tld
+def file_to_dict(file):
+    tld_dict = {'russia':[], 'france':[], 'china':[], 'germany':[], 'uk':[]}
+    with open(file, 'r') as file:
+        tld = ""
+        line_index = 0
+        cnt = 0
+        for line in file:
+            line = line.strip()
+            if line:
+                line_index += 1
+                index_1 = line.rfind(':')
+                if index_1 == -1:
+                    index_1 = line.rfind(';')
+                index = index_1 -1
+                tld = ""
+                while line[index] not in [".", "@", ";"]:
+                    tld = line[index] + tld
+                    index -= 1
+                if tld == "ru":
+                    tld_dict['russia'].append(line)
+                if tld == "cn":
+                    tld_dict['china'].append(line)
+                if tld == "de":
+                    tld_dict['germany'].append(line)
+                if tld == "uk":
+                    tld_dict['uk'].append(line)
+                if tld == "fr":
+                    tld_dict['france'].append(line)
+        dict_to_file(tld_dict)
+
+
+def dict_to_file(dict):
+    for key, value_list in dict.items():
+        with open(key + 'data.txt', 'a') as file:
+            for value in value_list:
+                file.write(value + '\n')
+
+
+if __name__ == '__main__':
+    main()
+

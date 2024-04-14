@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Update</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&&family=Libre+Franklin:wght@200;300&&family=PT+Sans&family=Raleway:wght@200;400;800&family=Rubik:wght@300&family=Tomorrow:ital,wght@0,200;0,300;0,500;0,700;1,400;1,500;1,600;1,800&family=Unbounded:wght@300;500&display=swap" rel="stylesheet">
+   <style>
+    body {
+    font-family: 'Libre Franklin', sans-serif;
+        font-weight: 300;
+    font-size: 13px;
+    text-align: center;
+    display: flex;
+    padding: 0px;
+    background-color: #dadada;; /* Set the background color */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-size: cover; /* Scale the background image to cover the entire body */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+            color:#e3e3e3;
+    margin: 0;
+        text-shadow: 10px 15px 30px rgb(0, 0, 0);
+}
+
+    h1 {
+        font-family: 'Audiowide', cursive;
+        margin: 0;
+        margin-top: 0px;
+        margin-bottom:30px;
+        margin-right: 400px;
+        font-size: 40px;
+        color: rgba(180, 231, 157, 0.77);
+        opacity: 0; /* Initially hidden */
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        bottom: 0px;
+        right: 10px;
+        padding: 0px;
+        text-align: center;
+        text-shadow: 0 5px 3px rgb(0, 0, 0);
+    }
+
+    h2 {
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 300;
+        margin-left: 20px;
+        margin-top: 0px;
+        margin-bottom:0px;
+        font-size: 20px;
+        color: rgba(124, 151, 173, 0.9);
+        bottom: 0px;
+        right: 20px;
+        padding: 0px;
+        top: 10%;
+        text-align: center;
+        text-shadow: 0 2px 1px rgb(0, 0, 0);
+    }
+
+    label {
+        font-family: 'Raleway', sans-serif;
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        font-style: normal;
+        font-weight: 200;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+        color:#e3e3e3;
+        margin-right: 400px;
+    }
+    input[type="number"] {
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        background-color: #ffffffc1;
+        padding: 8px;
+        width: 200px;
+        border-radius: 4px;
+        border: 1px  #ffffffc1;
+        margin-bottom: 25px;
+        margin-top: 12px;
+        margin-right: 400px;
+        font-size: 13px;
+    }
+
+    input[type="text"] {
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        margin-top: 12px;
+        background-color: #ffffffc1;
+        padding: 8px;
+        width: 200px;
+        border-radius: 4px;
+        border: 1px  #ffffffc1;
+        margin-bottom: 25px;
+        margin-right: 400px;
+        font-size: 13px;
+    }
+   @keyframes fadeIn {
+       from {
+           opacity: 0;
+           transform: translateX(-20px);
+       }
+       to {
+           opacity: 1;
+           transform: translateX(0);
+       }
+   }
+       @keyframes slideInFromTop {
+  from {
+      opacity: 0;
+    transform: translateX(-20%);
+
+  }
+  to {
+      opacity: 1;
+    transform: translateX(0);
+
+  }
+}
+
+    button[type="continue"] {
+        font-family: 'Raleway', sans-serif;
+        padding: 15px 35px;
+        color: #f4f2f5f0;
+        background-color: rgba(72, 3, 220, 0);
+        font-size: 13px;
+        border: 2px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        float: right;
+        margin-right: 583px;
+        margin-top: 20px;
+    }
+
+    button[type="continue"]:hover {
+        color: #040006f0;
+        background-color: rgba(229, 241, 121, 0.75);
+        transform: scale(1.05);
+    }
+
+    button[type="submit"] {
+        font-family: 'Raleway', sans-serif;
+        padding: 15px 35px;
+        color: #f4f2f5f0;
+        background-color: rgba(3, 181, 139, 0);
+        font-size: 13px;
+        border: 2px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        float: right;
+        margin-right: 640px;
+        margin-top: 20px;
+    }
+        button[type="close"] {
+        font-family: 'Raleway', sans-serif;
+        padding: 15px 35px;
+        color: rgba(2, 2, 59, 0.94);
+        background-color: rgba(5, 185, 143, 0.84);
+        font-size: 13px;
+        border: 2px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        float: right;
+        left: 20%;
+        right: 50%;
+        margin-top: 30px;
+        margin-bottom: 250px;
+        top: 90%;
+        margin-right: 200px;
+        z-index: 2;
+    }
+        button[type="close"]:hover {
+            display: none;
+        transition: border 0.3s ease, transform 0.3s ease;
+        font-size: 13px;
+        color: rgba(2, 2, 59, 0.94);
+        border: 1px solid rgba(2, 2, 59, 0.94);
+        background-color: rgba(5, 185, 143, 0.84);
+        transform: scale(1.05);
+    }
+        button[type="next"] {
+            display: none;
+        font-family: 'Raleway', sans-serif;
+        padding: 8px 8px;
+        font-size: 12px;
+        color: rgb(6, 182, 149);
+        background-color: rgba(5, 185, 143, 0);
+        border: 1px solid rgba(232, 232, 232, 0);
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+        left: 50%;
+        right: 50%;
+        margin-top: 5px;
+        margin-right: 170px;
+            margin-bottom: 0px;
+        z-index: 2;
+    }
+        button[type="next"]:hover {
+        transition: border 0.3s ease, transform 0.3s ease;
+            font-size: 12px;
+        color: rgba(6, 182, 149);
+        border: 1px solid rgba(26, 182, 149, 0.35);
+        background-color: rgba(5, 185, 143, 0);
+        transform: scale(1.05);
+    }
+    button[type="submit"]:hover {
+        color: #f4f2f5f0;
+        background-color: rgba(147, 246, 255, 0.2);
+        transform: scale(1.05);
+    }
+        button[type="show"] {
+            display: none;
+        font-family: 'Raleway', sans-serif;
+        padding: 10px 10px;
+        color: rgba(253, 252, 252, 0.89);
+        background-color: rgba(5, 185, 143, 0);
+        font-size: 13px;
+        border: 1px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        float: right;
+        left: 20%;
+        right: 50%;
+        margin-top: 60px;
+        margin-bottom: 250px;
+        top: 90%;
+        margin-right: 125px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        z-index: 2;
+
+    }
+        button[type="show"]:hover {
+        transition: border 0.2s ease, transform 0.2s ease;
+        color: #f4f2f5f0;
+        background-color: rgba(109, 220, 190, 0.41);
+        transform: scale(1.05);
+    }
+    .container {
+        text-align: center;
+        background-color: black;
+        background-image: url('https://drive.google.com/uc?export=download&id=1tnOhI9iAgCy3ftoXEyU3c5e5fhwUBXA6'); /* Set the background image */
+        background-repeat: no-repeat;
+        background-size: cover;
+        justify-content: center;
+        padding: 120px;
+        width: 990px;
+        height: 500px;
+        left: 50%;
+        border-radius: 5px;
+        box-shadow: 0 15px 8px rgba(0, 0, 0, 0.576);
+        z-index: 2;
+    }
+
+    .square-container {
+        cursor: pointer;
+        background-color: rgba(27, 56, 196, 0);
+        animation: fadeIn 1s ease-in-out forwards; /* Add animation */
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: center; /* Center horizontally */
+        align-items: center;
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 200;
+        font-size: 13px;
+        margin-left: 540px;
+        margin-bottom: 10px;
+        width: 400px;
+        padding: 15px;
+        position: fixed;
+        top: 13%;
+        left: 18%;
+        border-radius: 5px;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+
+    }
+
+        .line {
+            cursor: pointer;
+        background-color: rgba(27, 56, 196, 0);
+        width: 400px;
+        height: 60px;
+        z-index: 2;
+
+    }
+
+    select {
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        appearance: none; /* Remove default appearance */
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+        font-family: 'Raleway', sans-serif;
+        background-color: #ffffffc1;
+        font-size: 13px;
+        padding: 8px;
+        width: 218px;
+        border-radius: 4px;
+        border: 1px  #ffffffc1;
+        margin-bottom: 15px;
+        margin-right: 350px;
+    }
+
+    .inner-shadow {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: inset 40px 0px 70px rgba(0, 0, 0, 0.5); /* Adjust shadow properties */
+        border-radius: 10px; /* Optional: Match the container's border radius */
+    }
+    .meter {
+        animation: fadeIn 1s ease-in-out forwards; /* Add animation */
+        object-fit: cover;
+        position: absolute;
+        display: none;
+        height: 15px;
+        width: 230px;
+        border-radius: 10px;
+        margin-top: 26px;
+        margin-left: 670px;
+        z-index: 2;
+        transition: width 0.5s ease-in-out;
+        border: 0px solid #1c9600; /* Border */
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.745);
+    }
+
+    .arrow {
+        transition: left 0.3s ease-in-out;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 10px 5px 0;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.84) transparent transparent transparent;
+    }
+
+    p_1 {
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 200;
+        text-align: center;
+        color: #E3E3E3FF;
+        font-size: 15px;
+        margin-right: 350px;
+
+    }
+    p_2 {
+        font-family: 'Libre Franklin', sans-serif;
+        text-align: left;
+        font-weight: 400;
+        color: #E3E3E3FF;
+        font-size: 15px;
+    }
+
+    p_3 {
+        {#194, 239, 59#}
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight:bold;
+        text-align: left;
+        color: rgb(246, 14, 14);
+        font-size: 20px;
+        text-shadow: 10px 15px 30px rgb(0, 0, 0);
+        animation: slideInFromTop 2s ease-in-out forwards;
+    }
+
+
+    p_4 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    color: rgba(49, 197, 241, 0.73);
+    font-size: 19px;
+    }
+
+
+.info-symbol {
+    display: none;
+    font-size: 18px;
+    color: #007BFF; /* Change the color to your preference */
+    margin-left: 5px;
+}
+
+.info-container {
+    color: rgba(1, 8, 56, 0.71);
+    {#justify-content: center;#}
+    display: none;
+    margin-left: 480px;
+        width: 500px;
+        height: 200px;
+        position: fixed;
+        top: 30%;
+        left: 0%;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgba(227, 227, 227, 0.98);
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.576);
+    {#text-align: justify;#}
+
+}
+.text-container {
+    font-family: 'Libre Franklin', sans-serif;
+        font-weight: 200;
+    color: rgba(1, 8, 56, 0.71);
+    justify-content: center;
+        position: fixed;
+        top: 30%;
+        left: 0%;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgba(227, 227, 227, 0.98);
+    padding: 20px;
+    z-index: 1000;
+}
+    .overlay {
+        animation: fadeIn 0.5s ease-in-out forwards; /* Add animation */
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 11, 38, 0.7); /* Adjust the alpha value to control darkness */
+        z-index: 999; /* Ensure the overlay is on top of everything else */
+    }
+   .process {
+       animation: fadeIn 0.5s ease-in-out forwards;
+       display: none;
+       justify-content: center;
+       margin-top: 5px;
+       background-color: rgb(37, 45, 61);
+       text-align: center;
+       line-height: 20px;
+       border-radius: 20px;
+       float: left;
+       padding: 10px;
+    }
+    .arrow-symbol {
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(6, 182, 149);
+
+    }
+
+            .percentage-container {
+                display: none;
+            width: 50px;
+            height:50px;
+            padding: 15px;
+            border: 1px solid rgba(208, 208, 208, 0.36);
+            justify-content: center;
+            margin-top: -60px;
+            background-color: rgba(232, 232, 232, 0);
+            text-align: center;
+            border-radius: 100px;
+            float: left;
+            font-size: 12px;
+            position: fixed;
+                margin-left: 410px;
+
+        }
+            .percentage-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8px;
+                background-color: #addc12;
+        }
+        #number-container {
+            font-size: 15px;
+            font-weight: bold;
+            top: 90%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div id = "container" class="container">
+
+        <div class="meter" id="meter">
+            <div class="inner-shadow"></div>
+            <div class="arrow"></div>
+        </div>
+        <h1>Creating a <br> Strong Password</h1>
+        <label for="luckyNumber">Enter your lucky number</label>
+            <input type="number" id="luckyNumber">
+        <br>
+        <label for="favQuote">Enter a phrase from a movie or song</label>
+            <input type="text" id="favQuote">
+        <br>
+                <label for="releaseDate">Enter the release year of the selected movie or song</label>
+
+            <input type="number" id="releaseDate">
+        <br>
+
+        <button type="submit"id="reverseButton">submit</button>
+
+
+        <button type="continue" button id="responseButton" style="display: none"></button>
+                <div id = "resultContainer" class="square-container">
+                    <div id = "titleContainer"></div>
+
+                    <button type="show"id="show_process">show creation process</button>
+                </div>
+         <div id = "dynamic_container"></div>
+    </div>
+
+    <script>
+        $('#reverseButton').click(function () {
+            const dynamic_container = document.getElementById('dynamic_container');
+            while (dynamic_container.firstChild) {
+            dynamic_container.removeChild(dynamic_container.firstChild);}
+            const lucky_number = $('#luckyNumber').val();
+            const quote = $('#favQuote').val();
+            const release = $('#releaseDate').val();
+            const meter = document.getElementById('meter');
+            const titleContainer = document.getElementById('titleContainer');
+            const show_process = document.getElementById('show_process');
+            const resultContainer = document.getElementById('resultContainer');
+            const buttons = [];
+            const sub_containers = [];
+            const percentage_containers = [];
+            const number_containers = [];
+            $.ajax({
+                type: 'POST',
+                url: '/new_password',
+                data: JSON.stringify({ "lucky_number": lucky_number, "quote":quote, "release": release}),
+                contentType: 'application/json',
+                success: function (response) {
+                    //rank, password, quote_release, with_quote, symbols_list, symbols_str, lucky_list, lucky_str
+                    const ranks = response.ranks;
+                    const password = response.password;
+                    const quote_release = response.quote_release;
+                    const symbols_list = response.symbols_list;
+                    const lucky_list = response.lucky_list;
+                    const lucky_str = response.lucky_str;
+                    console.log(ranks);
+                    const titleContainer = $('#titleContainer');
+                    titleContainer.html(`<p_2> Suggested Password:  </p_2> <p_4> ${lucky_str}`);
+                    const content = ["Your initial password.", "Quote initials with random capitalization were " +
+                    "added to the starter password, padded with the release year's digits: "+quote_release, "Two randomly selected symbols were added to the existing password at random positions.",
+                    "Your lucky number was added at a random position."];
+                    const titles_list = [];
+                    titles_list.push(createTitle0(password), createTitle1(quote_release, password), createTitle2(symbols_list), createTitle3(lucky_list));
+                    updateMeter(ranks[3]);
+                    var process_container = create_process(titles_list, content, buttons, sub_containers, percentage_containers, number_containers);
+                    dynamic_container.appendChild(process_container);
+                    meter.style.display = 'block';
+                    resultContainer.style.display = 'block';
+                    titleContainer.css('display', 'block');
+                    show_process.style.display = 'block';
+                    dynamic_container.style.display = 'block';
+                    process_container.style.display = 'block';
+                    const [nextButton0, nextButton1, nextButton2] = buttons;
+                    const [subContainer0, subContainer1, subContainer2, subContainer3] = sub_containers;
+                    const [percentage_container0, percentage_container1, percentage_container2, percentage_container3] = percentage_containers;
+                    const [number_container0, number_container1, number_container2, number_container3] = number_containers;
+
+                    show_process.addEventListener('click', () => {
+                    subContainer0.style.display = 'block';
+                    const curr = 0;
+                    const target = Math.round(((ranks[0]/70)*100));
+                    percentage_container0.style.display = 'block';
+                    animateNumbers(number_container0, curr, target);
+                    nextButton0.style.display = 'block';
+                    });
+                    nextButton0.addEventListener('click', () => {
+                    subContainer1.style.display = 'block';
+                    const curr = Math.round(((ranks[0]/70)*100));
+                    const target = Math.round(((ranks[1]/70)*100));
+                    percentage_container1.style.display = 'block';
+                    animateNumbers(number_container1, curr, target);
+                    nextButton1.style.display = 'block';
+
+                    });
+                    nextButton1.addEventListener('click', () => {
+                    subContainer2.style.display = 'block';
+                    const curr = Math.round(((ranks[1]/70)*100));
+                    const target = Math.round((ranks[2]/70)*100);
+                    percentage_container2.style.display = 'block';
+                    animateNumbers(number_container2, curr, target);
+                    nextButton2.style.display = 'block';
+                    });
+                    nextButton2.addEventListener('click', () => {
+                    subContainer3.style.display = 'block';
+                    const curr = Math.round((ranks[2]/70)*100);
+                    const target = Math.round((ranks[3]/70)*100);
+                    percentage_container3.style.display = 'block';
+                    animateNumbers(number_container3, curr, target);
+                    });
+                }
+            })
+
+            })
+        function updateMeter(rank) {
+            const val = rank / 70
+            if (val < 0.5) {
+                const color = `rgb(${255}, ${val * 510}, 0)`;
+                meter.style.backgroundColor = color;
+            } else {
+                const color = `rgb(${382 - (255 * val)}, ${255}, 0)`;
+                meter.style.backgroundColor = color;
+            }
+            const arrow = document.querySelector('.arrow');
+            arrow.style.left = val*100+'%';
+        }
+
+        function create_process(titles_list, content, buttons, sub_containers, percentage_containers, number_containers) {
+            var lineBreak1 = document.createElement("div");
+            lineBreak1.className = "line";
+            var main_container = document.createElement("div");
+            main_container.style.display = 'block';
+            main_container.className = "square-container";
+            main_container.style.marginTop = "145px";
+            for (let i = 0; i < 4; i++) {
+                var sub_container = create_sub_process(titles_list[i], content[i], i, buttons);
+                main_container.appendChild(sub_container);
+                sub_containers.push(sub_container);
+                var tmp = create_percentage_container(i);
+                var percentage_container = tmp[0];
+                var number_container = tmp[1];
+                percentage_containers.push(percentage_container);
+                number_containers.push(number_container);
+                if (i != 3){
+                    var nextButton = createNextButton(i);
+
+                    if(i == 0){
+                        sub_container.style.marginLeft="120px";
+                        main_container.appendChild(lineBreak1);
+                        main_container.appendChild(percentage_container);
+                    }
+                    if (i==1){
+                        percentage_container.style.marginTop="59px";
+                        main_container.appendChild(percentage_container);
+                    }
+                    if(i==2){
+                        percentage_container.style.marginTop = "202px"
+                        main_container.appendChild(percentage_container);
+
+                    }
+                    main_container.appendChild(nextButton);
+                    buttons.push(nextButton);
+
+                }
+                else{
+                    percentage_container.style.marginTop = "322px"
+                    main_container.appendChild(percentage_container);
+                    sub_container.style.marginLeft="27px";
+                }
+
+            }
+            return main_container;
+        }
+function create_progress_container() {
+            var progress_container = document.createElement("div");
+            progress_container.className = "square-container";
+            progress_container.style.marginTop = "125px";
+            progress_container.style.marginLeft = "850px";
+            progress_container.style.width = "40px";
+            return progress_container;
+}
+function create_percentage_container(index){
+            var percentage_container = document.createElement("div");
+            percentage_container.className ="percentage-container";
+            percentage_container.id = "percentage_container" + index;
+            var number_container = document.createElement("div");
+            number_container.className = "number-container";
+            number_container.id = "number_container" + index;
+            number_container.style.color = "rgba(49, 197, 241, 0.73)";
+            number_container.style.fontWeight = "bold";
+            var text = document.createTextNode("Current Score:");
+            var line = document.createElement("div");
+            line.style.height = "5px";
+            percentage_container.appendChild(text);
+            percentage_container.appendChild(line);
+            percentage_container.appendChild(number_container);
+            return [percentage_container, number_container];
+}
+        function create_sub_process(title_container, content, index, buttons){
+            var text_container = createTextContainer(content);
+            var container = document.createElement("div");
+            container.id = "subContainer" + index;
+            container.className = "process";
+            container.appendChild(title_container);
+            container.appendChild(text_container);
+            return container;
+
+        }
+        function createTextContainer(content){
+            var text = document.createTextNode(content);
+            var text_container = document.createElement("div");
+            text_container.style.textAlign = 'justify';
+            text_container.style.fontSize = "14px";
+            text_container.appendChild(text);
+            return text_container;
+        }
+
+        function createNextButton(index) {
+            const iconSpan = document.createElement("span");
+            iconSpan.className = "arrow-symbol";
+            iconSpan.innerHTML = "&raquo;";
+            var nextButton = document.createElement("button");
+            nextButton.id = "nextButton" + index;
+            nextButton.type = "next";
+            nextButton.textContent = "NEXT ";
+            nextButton.appendChild(iconSpan);
+            return nextButton;
+        }
+        function createTitle0(password){
+            var title0 = document.createElement("p_2");
+            title0.textContent = password;
+            var text_container = document.createElement("div");
+            text_container.appendChild(title0);
+            return text_container;
+        }
+
+        function createTitle1(quote_release, password){
+            var title0 = document.createElement("p_3");
+            title0.textContent = quote_release;
+            var title1 = document.createElement("p_2");
+            title1.textContent = password;
+            var text_container = document.createElement("div");
+            text_container.appendChild(title0);
+            text_container.appendChild(title1);
+            return text_container;
+        }
+
+        function createTitle2(symbols_list){
+            var title0 = document.createElement("p_2");
+            title0.textContent = symbols_list[0];
+            var title1 = document.createElement("p_3");
+            title1.textContent = symbols_list[1];
+            var title2 = document.createElement("p_2");
+            title2.textContent = symbols_list[2];
+            var title3 = document.createElement("p_3");
+            title3.textContent = symbols_list[3];
+            var title4 = document.createElement("p_2");
+            title4.textContent = symbols_list[4];
+            var text_container = document.createElement("div");
+            text_container.appendChild(title0);
+            text_container.appendChild(title1);
+            text_container.appendChild(title2);
+            text_container.appendChild(title3);
+            text_container.appendChild(title4);
+            return text_container;
+        }
+        function createTitle3(lucky_list){
+            var title0 = document.createElement("p_2");
+            title0.textContent = lucky_list[0];
+            var title1 = document.createElement("p_3");
+            title1.textContent = lucky_list[1];
+            var title2 = document.createElement("p_2");
+            title2.textContent = lucky_list[2];
+            var text_container = document.createElement("div");
+            text_container.appendChild(title0);
+            text_container.appendChild(title1);
+            text_container.appendChild(title2);
+            return text_container;
+        }
+            function animateNumbers(number_container, currentValue, targetValue) {
+            const animationInterval = 50;
+            number_container.textContent = currentValue+'/100';
+            function updateNumber() {
+                if (currentValue < targetValue) {
+                    currentValue++;
+                    number_container.textContent = currentValue+'/100';
+                    setTimeout(updateNumber, animationInterval);
+                } else {
+                }
+            }
+            updateNumber();
+        }
+    </script>
+</body>
+</html>

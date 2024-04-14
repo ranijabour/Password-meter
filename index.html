@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reverse Name</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&&family=Libre+Franklin:wght@200;300&&family=PT+Sans&family=Raleway:wght@200;400;800&family=Rubik:wght@300&family=Tomorrow:ital,wght@0,200;0,300;0,500;0,700;1,400;1,500;1,600;1,800&family=Unbounded:wght@300;500&display=swap" rel="stylesheet">
+   <style>
+    body {
+    font-family: 'Libre Franklin', sans-serif;
+        font-weight: 300;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    padding: 0px;
+    background-color: #dadada;; /* Set the background color */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    background-size: cover; /* Scale the background image to cover the entire body */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+            color:#e3e3e3;
+    margin: 0;
+}
+
+    h1 {
+        font-family: 'Audiowide', cursive;
+        margin: 0;
+        margin-top: 0px;
+        margin-bottom:40px;
+        margin-right: 350px;
+        font-size: 50px;
+        color: rgba(180, 231, 157, 0.77);
+        opacity: 0; /* Initially hidden */
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        bottom: 0px;
+        right: 20px;
+        padding: 0px;
+        text-align: center;
+        text-shadow: 0 5px 3px rgb(0, 0, 0);
+    }
+
+    h2 {
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 300;
+        margin-left: 20px;
+        margin-top: 0px;
+        margin-bottom:0px;
+        font-size: 20px;
+        color: rgba(124, 151, 173, 0.9);
+        bottom: 0px;
+        right: 20px;
+        padding: 0px;
+        top: 10%;
+        text-align: center;
+        text-shadow: 0 2px 1px rgb(0, 0, 0);
+    }
+
+    label {
+        font-family: 'Raleway', sans-serif;
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        font-style: normal;
+        font-weight: 200;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 15px;
+        color:#e3e3e3;
+        margin-right: 350px;
+    }
+
+    input[type="text"] {
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        background-color: #ffffffc1;
+        padding: 8px;
+        width: 200px;
+        border-radius: 4px;
+        border: 1px  #ffffffc1;
+        margin-bottom: 15px;
+        margin-right: 350px;
+        font-size: 13px;
+    }
+   @keyframes fadeIn{
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+    button[type="continue"] {
+        {#            object-fit: cover;#}
+        {#position: absolute;#}
+        font-family: 'Raleway', sans-serif;
+        padding: 15px 35px;
+                color: rgba(255, 255, 255, 0.91);
+                background-color: rgba(121, 223, 241, 0.37);
+        font-size: 13px;
+        border: 2px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        float: right;
+        margin-right: 525px;
+        margin-top: 20px;
+    }
+
+    button[type="continue"]:hover {
+        color: #ffffff;
+        font-size: 13px;
+        background-color: rgba(121, 223, 241, 0.37);
+        transform: scale(1.05);
+    }
+
+    button[type="submit"] {
+        font-family: 'Raleway', sans-serif;
+        padding: 15px 35px;
+        color: #f4f2f5f0;
+        background-color: rgba(3, 181, 139, 0);
+        font-size: 13px;
+        border: 2px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        float: right;
+        margin-right: 590px;
+        margin-top: 20px;
+    }
+        button[type="close"] {
+        font-family: 'Raleway', sans-serif;
+        padding: 15px 35px;
+        color: rgba(2, 2, 59, 0.94);
+        background-color: rgba(5, 185, 143, 0.84);
+        font-size: 13px;
+        border: 2px solid rgba(232, 232, 232, 0.71);
+        border-radius: 80px;
+        cursor: pointer;
+        float: right;
+        left: 20%;
+        right: 50%;
+        margin-top: 30px;
+        margin-bottom: 250px;
+        top: 90%;
+        margin-right: 200px;
+        z-index: 2;
+    }
+        button[type="close"]:hover {
+        transition: border 0.3s ease, transform 0.3s ease;
+        font-size: 13px;
+        color: rgba(2, 2, 59, 0.94);
+        border: 1px solid rgba(2, 2, 59, 0.94);
+        background-color: rgba(5, 185, 143, 0.84);
+        transform: scale(1.05);
+    }
+
+    button[type="submit"]:hover {
+        color: #f4f2f5f0;
+        background-color: rgba(121, 223, 241, 0.37);
+        transform: scale(1.05);
+    }
+
+    .container {
+        text-align: center;
+        background-image: url('https://drive.google.com/uc?export=download&id=1tnOhI9iAgCy3ftoXEyU3c5e5fhwUBXA6'); /* Set the background image */
+        background-repeat: no-repeat;
+        background-size: cover;
+        justify-content: center;
+        padding: 120px;
+        width: 950px;
+        height: 500px;
+        left: 50%;
+        border-radius: 5px;
+        box-shadow: 0 15px 8px rgba(0, 0, 0, 0.576);
+                z-index: 2;
+    }
+
+    .square-container {
+            cursor: pointer;
+        background-color: rgba(3, 17, 78, 0);
+        animation: fadeIn 1s ease-in-out forwards; /* Add animation */
+        display: none;
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 200;
+        text-align: left;
+        font-size: 13px;
+        margin-left: 350px;
+        width: 400px;
+        height: 400px;
+        padding: 15px;
+        position: fixed;
+        top: 35%;
+        left: 32%;
+        border-radius: 5px;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    select {
+        animation: fadeIn 2s ease-in-out forwards; /* Add animation */
+        appearance: none; /* Remove default appearance */
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+        font-family: 'Raleway', sans-serif;
+        background-color: #ffffffc1;
+        font-size: 13px;
+        padding: 8px;
+        width: 218px;
+        border-radius: 4px;
+        border: 1px  #ffffffc1;
+        margin-bottom: 15px;
+        margin-right: 350px;
+    }
+
+    .inner-shadow {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: inset 40px 0px 70px rgba(0, 0, 0, 0.5); /* Adjust shadow properties */
+        border-radius: 10px; /* Optional: Match the container's border radius */
+    }
+    .meter {
+        animation: fadeIn 1s ease-in-out forwards;
+        object-fit: cover;
+        position: absolute;
+        display: none;
+        height: 25px;
+        width: 230px;
+        border-radius: 10px;
+        margin-top: 100px;
+        margin-left: 675px;
+        z-index: 2;
+        transition: width 0.5s ease-in-out;
+        border: 0px solid #1c9600; /* Border */
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.745);
+    }
+
+    .arrow {
+        transition: left 0.3s ease-in-out;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 10px 5px 0;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.84) transparent transparent transparent;
+    }
+
+    p_1 {
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        text-align: center;
+        color: #48c997;
+        font-size: 19px;
+
+    }
+    p_2 {
+        font-family: 'Raleway', sans-serif;
+        text-align: justify;
+        font-weight: 400;
+        color: #E3E3E3FF;
+        margin-top: 300px;
+        margin-left: 500px;
+        font-size: 16px;
+    }
+    ul {
+        list-style-type: none; /* Remove default bullet style */
+        padding: 0;
+    }
+
+    li {
+        font-style: normal;
+        font-weight: 200;
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 17px;
+        color: #E3E3E3FF;
+        margin-right: 9px;
+    }
+
+    .icon-column {
+        flex: 0 0 auto;
+        margin-right: 10px;
+    }
+
+    .text-column {
+        flex: 1;
+    }
+
+.info-symbol {
+    display: none;
+    font-size: 18px;
+    color: #007BFF;
+    margin-left: 5px;
+}
+.info-container {
+
+    color: rgba(1, 8, 56, 0.71);
+    {#justify-content: center;#}
+    display: none;
+    margin-left: 480px;
+    width: 500px;
+    height: 200px;
+    position: fixed;
+    top: 30%;
+    left: 0%;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgba(227, 227, 227, 0.98);
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.576);
+    {#text-align: justify;#}
+
+}
+.text-container {
+    font-family: 'Libre Franklin', sans-serif;
+        font-weight: 200;
+    color: rgba(1, 8, 56, 0.71);
+    justify-content: center;
+        position: fixed;
+        top: 30%;
+        left: 0%;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgba(227, 227, 227, 0.98);
+    padding: 20px;
+    z-index: 1000;
+
+}
+.smiley{
+    animation: fadeIn 1s ease-in-out forwards; /* Add animation */
+    display: none;
+    object-fit: cover;
+    position: absolute;
+    width: 145px;
+    height: 40px;
+    background-image: url('https://drive.google.com/uc?export=download&id=1c41f8lppwBBtfiboA5wTpK8yRHc9_sCb'); /* Replace 'smiley.png' with your image URL */
+    background-size: cover;
+    margin-top: 40px;
+    margin-left: 246px;
+    z-index: 1;
+}
+.smiley-cover{
+    animation: fadeIn 1s ease-in-out forwards;
+    display: none;
+            object-fit: cover;
+        position: absolute;
+                margin-top: 43px;
+        width: 120px;
+        height: 40px;
+
+        background-color: rgba(0, 11, 38, 0.85);
+    z-index: 2;
+}
+    .overlay {
+        animation: fadeIn 0.5s ease-in-out forwards; /* Add animation */
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 11, 38, 0.7); /* Adjust the alpha value to control darkness */
+        z-index: 999; /* Ensure the overlay is on top of everything else */
+    }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <div id = "container" class="container">
+<div class="smiley" id = "smiley"></div>
+        <div class="smiley-cover" id = "left_cover" style="margin-left: 602px"></div>
+                <div class="smiley-cover" id = "right_cover" style="margin-left: 756px"></div>
+        <div class="meter" id="meter">
+            <div class="inner-shadow"></div>
+            <div class="arrow"></div>
+        </div>
+        <h1>Test Your<br> Password</h1>
+        <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="Other">Other</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Albania">Albania</option>
+<option value="Algeria">Algeria</option>
+<option value="Andorra">Andorra</option>
+<option value="Angola">Angola</option>
+<option value="Antigua & Deps">Antigua & Deps</option>
+<option value="Argentina">Argentina</option>
+<option value="Armenia">Armenia</option>
+<option value="Australia">Australia</option>
+<option value="Austria">Austria</option>
+<option value="Azerbaijan">Azerbaijan</option>
+<option value="Bahamas">Bahamas</option>
+<option value="Bahrain">Bahrain</option>
+<option value="Bangladesh">Bangladesh</option>
+<option value="Barbados">Barbados</option>
+<option value="Belarus">Belarus</option>
+<option value="Belgium">Belgium</option>
+<option value="Belize">Belize</option>
+<option value="Benin">Benin</option>
+<option value="Bhutan">Bhutan</option>
+<option value="Bolivia">Bolivia</option>
+<option value="Bosnia Herzegovina">Bosnia Herzegovina</option>
+<option value="Botswana">Botswana</option>
+<option value="Brazil">Brazil</option>
+<option value="Brunei">Brunei</option>
+<option value="Bulgaria">Bulgaria</option>
+<option value="Burkina">Burkina</option>
+<option value="Burundi">Burundi</option>
+<option value="Cambodia">Cambodia</option>
+<option value="Cameroon">Cameroon</option>
+<option value="Canada">Canada</option>
+<option value="Cape Verde">Cape Verde</option>
+<option value="Central African Rep">Central African Rep</option>
+<option value="Chad">Chad</option>
+<option value="Chile">Chile</option>
+<option value="China">China</option>
+<option value="Colombia">Colombia</option>
+<option value="Comoros">Comoros</option>
+<option value="Congo">Congo</option>
+<option value="Congo {Democratic Rep}">Congo {Democratic Rep}</option>
+<option value="Costa Rica">Costa Rica</option>
+<option value="Croatia">Croatia</option>
+<option value="Cuba">Cuba</option>
+<option value="Cyprus">Cyprus</option>
+<option value="Czech Republic">Czech Republic</option>
+<option value="Denmark">Denmark</option>
+<option value="Djibouti">Djibouti</option>
+<option value="Dominica">Dominica</option>
+<option value="Dominican Republic">Dominican Republic</option>
+<option value="East Timor">East Timor</option>
+<option value="Ecuador">Ecuador</option>
+<option value="Egypt">Egypt</option>
+<option value="El Salvador">El Salvador</option>
+<option value="Equatorial Guinea">Equatorial Guinea</option>
+<option value="Eritrea">Eritrea</option>
+<option value="Estonia">Estonia</option>
+<option value="Ethiopia">Ethiopia</option>
+<option value="Fiji">Fiji</option>
+<option value="Finland">Finland</option>
+<option value="France">France</option>
+<option value="Gabon">Gabon</option>
+<option value="Gambia">Gambia</option>
+<option value="Georgia">Georgia</option>
+<option value="Germany">Germany</option>
+<option value="Ghana">Ghana</option>
+<option value="Greece">Greece</option>
+<option value="Grenada">Grenada</option>
+<option value="Guatemala">Guatemala</option>
+<option value="Guinea">Guinea</option>
+<option value="Guinea-Bissau">Guinea-Bissau</option>
+<option value="Guyana">Guyana</option>
+<option value="Haiti">Haiti</option>
+<option value="Honduras">Honduras</option>
+<option value="Hungary">Hungary</option>
+<option value="Iceland">Iceland</option>
+<option value="India">India</option>
+<option value="Indonesia">Indonesia</option>
+<option value="Iran">Iran</option>
+<option value="Iraq">Iraq</option>
+<option value="Ireland {Republic}">Ireland {Republic}</option>
+<option value="Israel">Israel</option>
+<option value="Italy">Italy</option>
+<option value="Ivory Coast">Ivory Coast</option>
+<option value="Jamaica">Jamaica</option>
+<option value="Japan">Japan</option>
+<option value="Jordan">Jordan</option>
+<option value="Kazakhstan">Kazakhstan</option>
+<option value="Kenya">Kenya</option>
+<option value="Kiribati">Kiribati</option>
+<option value="Korea North">Korea North</option>
+<option value="Korea South">Korea South</option>
+<option value="Kosovo">Kosovo</option>
+<option value="Kuwait">Kuwait</option>
+<option value="Kyrgyzstan">Kyrgyzstan</option>
+<option value="Laos">Laos</option>
+<option value="Latvia">Latvia</option>
+<option value="Lebanon">Lebanon</option>
+<option value="Lesotho">Lesotho</option>
+<option value="Liberia">Liberia</option>
+<option value="Libya">Libya</option>
+<option value="Liechtenstein">Liechtenstein</option>
+<option value="Lithuania">Lithuania</option>
+<option value="Luxembourg">Luxembourg</option>
+<option value="Macedonia">Macedonia</option>
+<option value="Madagascar">Madagascar</option>
+<option value="Malawi">Malawi</option>
+<option value="Malaysia">Malaysia</option>
+<option value="Maldives">Maldives</option>
+<option value="Mali">Mali</option>
+<option value="Malta">Malta</option>
+<option value="Marshall Islands">Marshall Islands</option>
+<option value="Mauritania">Mauritania</option>
+<option value="Mauritius">Mauritius</option>
+<option value="Mexico">Mexico</option>
+<option value="Micronesia">Micronesia</option>
+<option value="Moldova">Moldova</option>
+<option value="Monaco">Monaco</option>
+<option value="Mongolia">Mongolia</option>
+<option value="Montenegro">Montenegro</option>
+<option value="Morocco">Morocco</option>
+<option value="Mozambique">Mozambique</option>
+<option value="Myanmar, {Burma}">Myanmar, {Burma}</option>
+<option value="Namibia">Namibia</option>
+<option value="Nauru">Nauru</option>
+<option value="Nepal">Nepal</option>
+<option value="Netherlands">Netherlands</option>
+<option value="New Zealand">New Zealand</option>
+<option value="Nicaragua">Nicaragua</option>
+<option value="Niger">Niger</option>
+<option value="Nigeria">Nigeria</option>
+<option value="Norway">Norway</option>
+<option value="Oman">Oman</option>
+<option value="Pakistan">Pakistan</option>
+<option value="Palau">Palau</option>
+<option value="Panama">Panama</option>
+<option value="Papua New Guinea">Papua New Guinea</option>
+<option value="Paraguay">Paraguay</option>
+<option value="Peru">Peru</option>
+<option value="Philippines">Philippines</option>
+<option value="Poland">Poland</option>
+<option value="Portugal">Portugal</option>
+<option value="Qatar">Qatar</option>
+<option value="Romania">Romania</option>
+<option value="Russia">Russia</option>
+<option value="Rwanda">Rwanda</option>
+<option value="St Kitts & Nevis">St Kitts & Nevis</option>
+<option value="St Lucia">St Lucia</option>
+<option value="Saint Vincent & the Grenadines">Saint Vincent & the Grenadines</option>
+<option value="Samoa">Samoa</option>
+<option value="San Marino">San Marino</option>
+<option value="Sao Tome & Principe">Sao Tome & Principe</option>
+<option value="Saudi Arabia">Saudi Arabia</option>
+<option value="Senegal">Senegal</option>
+<option value="Serbia">Serbia</option>
+<option value="Seychelles">Seychelles</option>
+<option value="Sierra Leone">Sierra Leone</option>
+<option value="Singapore">Singapore</option>
+<option value="Slovakia">Slovakia</option>
+<option value="Slovenia">Slovenia</option>
+<option value="Solomon Islands">Solomon Islands</option>
+<option value="Somalia">Somalia</option>
+<option value="South Africa">South Africa</option>
+<option value="South Sudan">South Sudan</option>
+<option value="Spain">Spain</option>
+<option value="Sri Lanka">Sri Lanka</option>
+<option value="Sudan">Sudan</option>
+<option value="Suriname">Suriname</option>
+<option value="Swaziland">Swaziland</option>
+<option value="Sweden">Sweden</option>
+<option value="Switzerland">Switzerland</option>
+<option value="Syria">Syria</option>
+<option value="Taiwan">Taiwan</option>
+<option value="Tajikistan">Tajikistan</option>
+<option value="Tanzania">Tanzania</option>
+<option value="Thailand">Thailand</option>
+<option value="Togo">Togo</option>
+<option value="Tonga">Tonga</option>
+<option value="Trinidad & Tobago">Trinidad & Tobago</option>
+<option value="Tunisia">Tunisia</option>
+<option value="Turkey">Turkey</option>
+<option value="Turkmenistan">Turkmenistan</option>
+<option value="Tuvalu">Tuvalu</option>
+<option value="Uganda">Uganda</option>
+<option value="Ukraine">Ukraine</option>
+<option value="United Arab Emirates">United Arab Emirates</option>
+<option value="United Kingdom">United Kingdom</option>
+<option value="United States">United States</option>
+<option value="Uruguay">Uruguay</option>
+<option value="Uzbekistan">Uzbekistan</option>
+<option value="Vanuatu">Vanuatu</option>
+<option value="Vatican City">Vatican City</option>
+<option value="Venezuela">Venezuela</option>
+<option value="Vietnam">Vietnam</option>
+<option value="Yemen">Yemen</option>
+<option value="Zambia">Zambia</option>
+<option value="Zimbabwe">Zimbabwe</option>
+            </select>
+        <br>
+        <label for="nameInput">Username</label>
+            <input type="text" id="nameInput">
+        <br>
+        <label for="password">Password</label>
+            <input type="text" id="password">
+        <br>
+        <button type="submit"id="reverseButton">submit</button>
+        <div id="resultContainer" class="square-container">
+            <ul id="mylist">
+            </ul>
+        </div>
+        <button type="continue" button id="responseButton" style="display: none" onclick="navigateToNewPage()"></button>
+
+    </div>
+
+    <script>
+        $('#reverseButton').click(function () {
+            var overlay = document.getElementById("overlay");
+            const content = ["","","Reusing passwords across multiple accounts invites troubles. If one account is compromised, attackers can exploit reused passwords to access other accounts. " +
+            "Unique passwords for each account prevent credential stuffing attacks, minimizing the potential damage.", "Avoid using very common passwords as part of your own password.\n" +
+            "Attackers guess passwords using pre-existing dictionaries. Unique passwords, unrelated to common words or phrases, thwart dictionary attacks, " +
+            "making it more challenging for hackers to gain unauthorized access to your accounts.", "Don't use your account information in your password.\n" +
+            "Attackers know to guess your username and email address as part of your password. Furthermore, refrain from including easily guessable information such as your name, birthdate, " +
+            "or pet's name in your passwords. Personal details like these can be readily accessible to attackers.", "Using dates in your password can pose a security risk. Birthdates, anniversaries, " +
+            "or other significant dates are often among the first things attackers try when attempting to crack a password,  because they are relatively easy to guess or obtain through social engineering or publicly available information."];
+            const titles = ["", "", "Password Reuse Risks", "Steer Clear of Common Passwords","Avoid Personal Information","Date-Based Password Risks"];
+            const symbols = createDynamicSymbols();
+            const tmp  = createDynamicContainers(content, titles);
+            const containers = tmp[0];
+            const buttons = tmp[1];
+            const username = $('#nameInput').val();
+            const password = $('#password').val();
+            const meter = document.getElementById('meter');
+            const left_cover = document.getElementById('left_cover');
+            const right_cover = document.getElementById('right_cover');
+            const smiley = document.getElementById('smiley');
+            $.ajax({
+                type: 'POST',
+                url: '/reverse_name',
+                data: JSON.stringify({ "username": username, "password":password}),
+                contentType: 'application/json',
+                success: function (response) {
+                    const rank = response.rank;
+                    const indicators = response.indicators;
+                    const info_list = response.info_list;
+                    const resultContainer = $('#resultContainer');
+                    resultContainer.html(`
+                    <ul id="mylist">
+                            <li>
+                                <span class="icon-column"><i class="material-icons">lock_outline</i></span>
+                                <span class="text-column">${response.feedback1}</span>
+                            </li>
+                            <li>
+                                <span class="icon-column"><i class="material-icons">lock_outline</i></span>
+                                <span class="text-column">${response.feedback2}</span>
+                            </li>
+                            <li>
+                                <span class="icon-column"><i class="material-icons">lock_outline</i></span>
+                                <span class="text-column">${response.feedback3}</span>
+                            </li>
+                                                        <li>
+                                <span class="icon-column"><i class="material-icons">lock_outline</i></span>
+                                <span class="text-column">${response.feedback4}</span>
+                            </li>
+                                                        <li>
+                                <span class="icon-column"><i class="material-icons">lock_outline</i></span>
+                                <span class="text-column">${response.feedback5}</span>
+                            </li>
+
+                            </ul>
+                            `);
+
+                        const list_feedbacks = document.getElementById('mylist');
+                        const listItems = list_feedbacks.getElementsByTagName('li');
+                               for (let i = 5; i > 1; i--) {
+                        if (!indicators[i]){
+                            mylist.removeChild(listItems[i-1]);
+                        }
+                    }
+                        for (let i = 1; i < info_list.length; i++) {
+                            const index = info_list[i];
+                            const Item = listItems[i];
+                                    Item.appendChild(symbols[index]);
+                                    symbols[index].style.display = "inline";
+                        }
+
+                      resultContainer.css('display', 'block');
+                        updateMeter(rank, right_cover, left_cover);
+                                                smiley.style.display = 'inline-block';
+                        left_cover.style.display = 'block';
+                        right_cover.style.display = 'block';
+                        meter.style.display = 'block';
+
+
+
+                    }
+            })
+
+            var responseButton = document.getElementById("responseButton");
+            var response = "Make your password stronger";
+            responseButton.style.display = "inline";
+            responseButton.innerText = response;
+            const [ , , infoContainer2, infoContainer3, infoContainer4, infoContainer5] = containers;
+            const [ , , symbol2, symbol3, symbol4, symbol5] = symbols;
+            const [ , , closeButton2, closeButton3, closeButton4, closeButton5] = buttons;
+            function toggleSymbolDisplay(element) {
+                {#if (element.style.display === 'none' || element.style.display === '') {#}
+                    element.style.display = 'block';
+                    overlay.style.display = 'block';
+                // else {
+                {#    element.style.display = 'none';#}
+            }
+            function toggleButtonDisplay(element) {
+                    element.style.display = 'none';
+                    overlay.style.display = 'none';
+                }
+
+            symbol2.addEventListener('click', () => {
+                toggleSymbolDisplay(infoContainer2);
+            });
+
+            symbol3.addEventListener('click', () => {
+                toggleSymbolDisplay(infoContainer3);
+            });
+            symbol4.addEventListener('click', () => {
+                toggleSymbolDisplay(infoContainer4);
+            });
+
+            symbol5.addEventListener('click', () => {
+                toggleSymbolDisplay(infoContainer5);
+            });
+                        closeButton2.addEventListener('click', () => {
+                toggleButtonDisplay(infoContainer2);
+            });
+
+            closeButton3.addEventListener('click', () => {
+                toggleButtonDisplay(infoContainer3);
+            });
+            closeButton4.addEventListener('click', () => {
+                toggleButtonDisplay(infoContainer4);
+            });
+
+            closeButton5.addEventListener('click', () => {
+                toggleButtonDisplay(infoContainer5);
+            });
+             document.addEventListener('click', (event) => {
+                 if (event.target !== symbol2 && !infoContainer2.contains(event.target)) {
+                     infoContainer2.style.display = 'none';
+
+              }
+                if (event.target !== symbol3 && !infoContainer3.contains(event.target)) {
+                  infoContainer3.style.display = 'none';
+
+                }
+                 if (event.target !== symbol4 && !infoContainer4.contains(event.target)) {
+                    infoContainer4.style.display = 'none';
+
+                 }
+                 if (event.target !== symbol5 && !infoContainer5.contains(event.target)) {
+                     infoContainer5.style.display = 'none';
+            }
+
+        });
+         });
+        function updateMeter(rank, right_cover, left_cover) {
+            const val = rank / 70
+            if (val < 0.5) {
+                const color = `rgb(${255}, ${val * 510}, 0)`;
+                meter.style.backgroundColor = color;
+            } else {
+                const color = `rgb(${382 - (255 * val)}, ${255}, 0)`;
+                meter.style.backgroundColor = color;
+            }
+                right_cover.style.marginLeft = "756px";
+                left_cover.style.marginLeft = "602px";
+            const arrow = document.querySelector('.arrow');
+            arrow.style.left = val*100+'%';
+            if ((25<rank) && (rank <=30)){
+                right_cover.style.marginLeft = "793px";
+                left_cover.style.marginLeft = "639px";
+                return;
+            }
+            if ((30<rank) && (rank<=50)){
+                right_cover.style.marginLeft = "830px";
+                left_cover.style.marginLeft = "675px";
+                return;
+            }
+            if (50<rank){
+                right_cover.style.marginLeft = "867px";
+                left_cover.style.marginLeft = "710px";
+
+            }
+        }
+        function createDynamicSymbols() {
+            const symbols = [0,1];
+            for (let i = 2; i < 6; i++) {
+            var symbol = document.createElement("span");
+            const tmp = "info-symbol-"+i;
+            symbol.className = "info-symbol";
+            symbol.id = tmp;
+            symbol.innerHTML = "&#9432;";
+            symbols.push(symbol);
+        }
+        return symbols;
+        }
+
+        function createDynamicContainers(content, titles) {
+            const containers = [0,1]
+            const bottuns = [0,1];
+            for (let i = 2; i < 6; i++) {
+                const title = createTitle(titles[i]);
+                var text_container = createTextContainer(content[i]);
+                var closeButton = createCloseButton(i);
+                var info_container = createInfoContainer(i, title, text_container, closeButton);
+                var body = document.body;
+                body.appendChild(info_container);
+                containers.push(info_container);
+                bottuns.push(closeButton);
+            }
+             return [containers, bottuns];
+
+        }
+        function createTitle(title_text){
+            const title = document.createElement('span');
+            title.textContent = title_text;
+            title.style.fontWeight = 'bold';
+            title.style.align  = 'center';
+            title.style.fontSize = "17px";
+            title.style.fontFamily = "'Raleway', sans-serif";
+            return title;
+        }
+        function createTextContainer(content){
+            var text = document.createTextNode(content);
+            var text_container = document.createElement("div");
+            text_container.style.textAlign = 'justify';
+            text_container.appendChild(text);
+            return text_container;
+        }
+
+        function createCloseButton(index) {
+            var closeButton = document.createElement("button");
+            closeButton.id = "closeButton" + index;
+            closeButton.type = "close";
+            closeButton.textContent = "close";
+            return closeButton;
+        }
+
+        function createInfoContainer(index, title, text_container, closeButton){
+            var container = document.createElement("div");
+            container.className = "info-container";
+            container.id = "infoContainer" + index;
+            const lineBreak1 = document.createElement('br');
+            const lineBreak2 = document.createElement('br');
+            container.appendChild(title);
+            container.appendChild(lineBreak1);
+            container.appendChild(lineBreak2);
+            container.appendChild(text_container);
+            container.appendChild(closeButton);
+            return container;
+        }
+        function navigateToNewPage() {
+        window.location.href = "/newpage";
+}
+    </script>
+</body>
+</html>
